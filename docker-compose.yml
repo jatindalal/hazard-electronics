@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+    wordpress:
+        depends_on:
+            - db
+        image: wordpress:latest
+        volumes:
+            - ./wordpress_files:/var/www/html
+            - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+        ports:
+            - "80:80"
+        restart: always
+        environment:
+            WORDPRESS_DB_HOST: db:3306
+            WORDPRESS_DB_USER: jd
+            WORDPRESS_DB_PASSWORD: Jatin123@
+
+    db:
+        image: mariadb:latest
+        volumes:
+            - ./db_data:/var/lib/mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: Jatin123@
+            MYSQL_db: wordpress
+            MYSQL_USER: jd
+            MYSQL_PASSWORD: Jatin123@
+    
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        links:
+            - db:mysql
+        ports:
+            - "8181:80"
+        environment:
+            MYSQL_USERNAME: jd
+            MYSQL_ROOT_PASSWORD: Jatin123@
