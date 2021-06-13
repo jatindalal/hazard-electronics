@@ -23,7 +23,7 @@ services:
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: Jatin123@
-            MYSQL_db: wordpress
+            MYSQL_DATABASE: wordpress
             MYSQL_USER: jd
             MYSQL_PASSWORD: Jatin123@
     
